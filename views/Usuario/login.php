@@ -14,10 +14,11 @@
     <div class="h1">Sistama TCP llibreria</div>
   </div>
 
-
+  <form action="UsuarioController.php" mothod="POST" >
   <div class="login-right">
     <div class="h2">Entrar al sistema</div>
     <div class="form-group">
+    <input type="hidden" name="action" value="login">
       <input type="text" id="full-name" placeholder="Nom del Usuari">
       <label for="full-name">Nom Usuari</label>    
     </div>
@@ -29,6 +30,7 @@
     <div class="button-area">
       <button class="btn btn-primary">Entrar</button>
     </div>
+</form>
   </div>
 </div>
 <script>

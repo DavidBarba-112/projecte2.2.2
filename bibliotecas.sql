@@ -8,7 +8,9 @@ CREATE TABLE usuaris (
     correu VARCHAR(70) NOT NULL,
     dni VARCHAR (60) NOT NULL,
     contrasenya VARCHAR(255) NOT NULL,
-    rol VARCHAR(150) NOT NULL
+    rol VARCHAR(150) NOT NULL,
+    foto VARCHAR(255),
+    foto_url VARCHAR(255) 
 
 
 );
