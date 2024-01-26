@@ -10,11 +10,10 @@ public function LoginView(){
 
 }
 
-if(isset($_GET['action']) $$ $_GET['action']=='login'){
+if(isset($_GET['action']) && $_GET['action']=='login'){
     $instanciacontrolador = new UsuarioController();
     $instanciacontrolador->LoginView();
 
 }
 
 ?>  
-a

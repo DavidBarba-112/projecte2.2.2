@@ -10,30 +10,24 @@
 
 <div class="login-wrapper">
   <div class="login-left">
-    <img src="http://res.cloudinary.com/dzqowkhxu/image/upload/v1513679279/bg-login_bxxfkf.png">
-    <div class="h1">Enter the Nebula</div>
+    <img src="/projecte2.2.2/images/Quien-es-Mister-Tartaria-y-Mickey-Mouse-Empirico-donde-ver-el-podcast-terraplanista-viral-en-tiktok-696x348.jpg">
+    <div class="h1">Sistama TCP llibreria</div>
   </div>
+
+
   <div class="login-right">
-    <div class="h2">Register</div>
+    <div class="h2">Entrar al sistema</div>
     <div class="form-group">
-      <input type="text" id="full-name" placeholder="Full Name">
-      <label for="full-name">Full Name</label>    
+      <input type="text" id="full-name" placeholder="Nom del Usuari">
+      <label for="full-name">Nom Usuari</label>    
     </div>
+
     <div class="form-group">
-      <input type="text" id="Email" placeholder="Email">
-      <label for="Email">Email</label>    
+      <input type="password" id="Password" placeholder="Contrasenya">
+      <label for="Password">COntrasenya</label>    
     </div>
-    <div class="form-group">
-      <input type="password" id="Password" placeholder="Password">
-      <label for="Password">Password</label>    
-    </div>
-    <div class="checkbox-container">
-      <input type="checkbox">
-      <div class="text-checkbox">I agree with the terms of service.</div>
-    </div> 
     <div class="button-area">
-      <button class="btn btn-secondary">Login</button>
-      <button class="btn btn-primary">Sign Up</button>
+      <button class="btn btn-primary">Entrar</button>
     </div>
   </div>
 </div>
