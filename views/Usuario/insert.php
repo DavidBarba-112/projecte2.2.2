@@ -9,7 +9,7 @@
 
 <div class="ui container">
     <h1>Crear nuevo usuario</h1>
-    <form action="PeliculasController.php" method="POST" enctype="multipart/form-data" class="ui form">
+    <form action="UsuarioController.php" method="POST" enctype="multipart/form-data" class="ui form">
         <div class="four fields">
 
             <div class="field">
@@ -30,7 +30,7 @@
 
             <div class="field">
                 <label for="nombre">Contrasenya</label>
-                <input type="text" id="contrasenya" name="Contrasenya">
+                <input type="text" id="contrasenya" name="contrasenya">
             </div>
         </div>
         <div class="two fields">
@@ -50,6 +50,16 @@
         </div>
 
         <div class="five fields">
+            <div class="field"></div>
+            <div class="field"></div>
+            <div class="field"><button class="ui orange button">
+                <i class="youtube icon"></i>
+                Guardar Usuari
+            </button>
+            <div class="field"></div>
+            <div class="field"></div>
+
+
 
         </div>
     </form>

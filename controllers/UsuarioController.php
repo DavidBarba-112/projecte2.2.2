@@ -29,4 +29,12 @@ if(isset($_GET['action']) && $_GET['action']=='insert'){
 
 }
 
+
+if(isset($_POST['action']) && $_POST['action']=='insert'){
+    $password = password_hash($_POST['contrasenya'], PASSWORD_BCRYPT);
+    echo "Esta es la contrasenya "  . $_POST['contrasenya'] ."<br>";
+    echo "Esta es la contrasenya Encriptada" . $password;
+
+}
+
 ?>  
