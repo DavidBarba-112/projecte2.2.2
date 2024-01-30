@@ -31,10 +31,22 @@ if(isset($_GET['action']) && $_GET['action']=='insert'){
 
 
 if(isset($_POST['action']) && $_POST['action']=='insert'){
-    $password = password_hash($_POST['contrasenya'], PASSWORD_BCRYPT);
-    echo "Esta es la contrasenya "  . $_POST['contrasenya'] ."<br>";
-    echo "Esta es la contrasenya Encriptada" . $password;
 
+    $instanciacontrollador = new UsuarioController();
+    $password = password_hash($_POST['contrasenya'], PASSWORD_BCRYPT);
+    $foto = $_FILES['imagen']['name'];
+    $fototemporal = $_FILES['imagen']['tmp_name'];
+    $fotourl = "../Views/Usuario/Image/" . $foto;
+    copy($fototemporal,$fotourl);
+    $instanciacontrolador->SaveInfoForModel(
+        $_POST['nombre'],
+        $_POST['email'],
+        $_POST['documento'],
+        $password,
+        $_POST['rol'],
+        $foto,
+        $fotourl
+    );
 }
 
 ?>  
