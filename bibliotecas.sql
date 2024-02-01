@@ -2,12 +2,12 @@ DROP DATABASE IF exists bibliotecas;
 CREATE DATABASE bibliotecas;
 USE bibliotecas;
 
-CREATE TABLE usuaris (
-    id_usuari INT PRIMARY KEY AUTO_INCREMENT,
-    nom_usuari VARCHAR(50) NOT NULL,
-    correu VARCHAR(70) NOT NULL,
-    dni VARCHAR (60) NOT NULL,
-    contrasenya VARCHAR(255) NOT NULL,
+CREATE TABLE usuarios (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_usuario VARCHAR(50) NOT NULL,
+    email VARCHAR(70) NOT NULL,
+    documento VARCHAR (60) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     rol VARCHAR(150) NOT NULL,
     foto VARCHAR(255),
     foto_url VARCHAR(255) 
@@ -65,6 +65,10 @@ CREATE TABLE llistat_llibres_venuts(
 
 );
 */
+INSERT INTO usuarios (nombre_usuario, email, documento, password, rol, foto, foto_url)
+VALUES 
+    ('us', 'usuario1@example.com', '123456789', 'cn', 'Administrador', 'imagen1.jpg', 'https://url_imagen1.com');
+
 
 
 INSERT INTO rols VALUES
