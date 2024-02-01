@@ -2,18 +2,6 @@ DROP DATABASE IF exists bibliotecas;
 CREATE DATABASE bibliotecas;
 USE bibliotecas;
 
-CREATE TABLE usuarios (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre_usuario VARCHAR(50) NOT NULL,
-    email VARCHAR(70) NOT NULL,
-    documento VARCHAR (60) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    rol VARCHAR(150) NOT NULL,
-    foto VARCHAR(255),
-    foto_url VARCHAR(255) 
-
-
-);
 
 
 CREATE TABLE rols (
@@ -22,19 +10,22 @@ CREATE TABLE rols (
 );
 
 
-
-
-CREATE TABLE treballadors (
-    id_treballador INT PRIMARY KEY AUTO_INCREMENT ,
-    nom VARCHAR (50),
-    cognom VARCHAR (50),
-    email VARCHAR (50),
-    direccio VARCHAR (50),
-    data_creacio DATE,
+CREATE TABLE usuarios (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_usuario VARCHAR(50) NOT NULL,
+    email VARCHAR(70) NOT NULL,
+    documento VARCHAR (60) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     id_rol INT,
     FOREIGN KEY(id_rol) REFERENCES rols(id_rol)
 
+
 );
+
+
+
+
+
 
 
 
@@ -65,22 +56,26 @@ CREATE TABLE llistat_llibres_venuts(
 
 );
 */
-INSERT INTO usuarios (nombre_usuario, email, documento, password, rol, foto, foto_url)
-VALUES 
-    ('us', 'usuario1@example.com', '123456789', 'cn', 'Administrador', 'imagen1.jpg', 'https://url_imagen1.com');
 
 
 
 INSERT INTO rols VALUES
     (1, 'Administrador'),
-    (2, 'Empleado'),
-    (3, 'Cliente');
+    (2, 'Empleado');
 
 
-INSERT INTO treballadors  VALUES
-    (1, 'Juan', 'Perez', 'juan.perez@example.com', 'Calle A, Ciudad', '2023-11-14', 1),
-    (2, 'Maria', 'Gomez', 'maria.gomez@example.com', 'Calle B, Ciudad', '2023-01-13', 2),
-    (3, 'Carlos', 'Rodriguez', 'carlos.rodriguez@example.com', 'Calle C, Ciudad', '2023-10-11', 2);
+INSERT INTO usuarios VALUES 
+    (1,'David', 'david@example.com', '123456789', '12',2),
+    (2,'Joel','joel@example.com', '123456789', '123',2),
+    (3,'Arnau','arnau@example.com', '123223','1234',2),
+    (4, 'Pau', 'pau@example.com', '987654321', '12342', 2),
+    (5, 'Javi', 'javi@example.com', '111222333', '123456', 2),
+    (6, 'Miquel', 'miquel@example.com', '456789123', '1234567', 2),
+    (7, 'Alberto', 'alberto@example.com', '789123456', '12345678', 2),
+    (8, 'Admin', 'admin@example.com', '789123456', 'root', 1);
+
+
+
 
 
 
