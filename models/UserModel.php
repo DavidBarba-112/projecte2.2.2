@@ -7,7 +7,9 @@ class UserModel {
     }
 
     public function getUserByEmailAndPassword($email, $password) {
-        $query = "SELECT * FROM usuarios WHERE email = ? AND password = ?";
+        $query = "SELECT u.*, r.rol as rol_nombre FROM usuarios u
+                  INNER JOIN rols r ON u.id_rol = r.id_rol
+                  WHERE email = ? AND password = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("ss", $email, $password);
         $stmt->execute();

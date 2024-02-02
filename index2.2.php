@@ -9,6 +9,14 @@
 
     
 <body>
+  <?php
+
+  // Mostrar el correo del usuario si está autenticado
+session_start();
+if (!isset($_SESSION['user']) || $_SESSION['user']['rol'] != 'Administrador') {
+      echo "Bienvenido, " . $_SESSION['user']['email'];
+}
+?>
 
     <div class="layout">
         <div class="layout__container">
@@ -29,10 +37,7 @@
                 <li><a href="/MVC/index.php?controlador=Hora&accion=hora">Llistat eff</a></li>
                 <li><a href="/MVC/index.php?controlador=Hora&accion=hora">Llistat eff</a></li>
                 <li><a href="calendari.html">Calendari</a></li>
-                <li><a href="index2.php">login2</a></li>
-                </li>
-                <!--<li><a href="http://localhost/projecte2.2.2/controllers/UsuarioController.php?action=login" class="item">Login</a></li> -->
-                <li><a href="http://localhost/projecte2.2.2/controllers/UsuarioController.php?action=insert" class="item">Register</a></li>
+ 
 
 
                 
