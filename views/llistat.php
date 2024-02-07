@@ -49,7 +49,7 @@
   }
 </style>
 <body>
-    <h2 id="titol">Preferncies</h2>
+    <h2 id="titol">Llistat</h2>
     <table  border="1">
         <thead><tr><?php
         $item = $listado->fetch();
@@ -65,13 +65,13 @@
             foreach($item as $key=>$value) { ?>
                 <td><?php echo $value ?></td><?php
             } ?>
-            <td><a href="index.php?controlador=Preferencies&accion=formulario_modificar&param=<?php echo $item["id_preferencia"] ?>">Editar</a></td>
-            <td><a href="index.php?controlador=Preferncies&accion=eliminar&param=<?php echo $item["id_preferencia"] ?>">Eliminar</a></td>
+            <td><a href="index.php?controlador=Disponiblitat&accion=formulario_modificar&param=<?php echo $item["id_disponible"] ?>">Editar</a></td>
+            <td><a href="index.php?controlador=Disponiblitat&accion=eliminar&param=<?php echo $item["id_disponible"] ?>">Eliminar</a></td>
         </tr> <?php
         } while($item = $listado->fetch());  ?>
     
     </table>   
-    <a href="#">Afegir Preferencia</a>
+    <a href="#">Afegir Disponiblitat</a>
     <!-- Queda pendent afegir i eliminar -->
 </body>
 </html>

@@ -11,7 +11,7 @@ CREATE TABLE rols (
 
 
 CREATE TABLE usuarios (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     nombre_usuario VARCHAR(50) NOT NULL,
     email VARCHAR(70) NOT NULL,
     documento VARCHAR (60) NOT NULL,

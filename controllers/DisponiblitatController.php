@@ -1,90 +1,37 @@
-
 <?php
-class DisponiblitatController
-{
-    private $view;
 
-    function __construct()
-    {
-        //Creamos una instancia de nuestro mini motor de plantillas
-        $this->view = new View();
-    }
- 
+require_once 'models/DisponibilitatModel.php'; // Incluir el DAO aquí.
 
+class DisponiblitatController {
+    private $disponibilitatDAO;
 
-
-
-    public function disponiblitat($request)
-    {
-        //Incluye el modelo que corresponde
-        require 'models/DisponiblitatModel.php';
- 
-        //Creamos una instancia de nuestro "modelo"
-        $items = new DisponibilitatModel();
- 
-        //Le pedimos al modelo todos los items
-        $listado = $items->listadoTotal5();
-        //Pasamos a la vista toda la información que se desea representar
-        $data['listado'] = $listado;
-        //Finalmente presentamos nuestra plantilla
-        $this->view->show("disponiblitat.php", $data);
-
+    public function __construct() {
+        $this->disponibilitatDAO = new DisponibilitatDAO();
     }
 
-
-
-
-
-    public function formulario_modificar($request){
-        require 'models/DisponiblitatModel.php';
-        $items = new DisponibilitatModel();
-
-        $listado = $items->datos_formulario($request ["param"]);
-        $classes = $items->listadoClases($request ["param"]);
-
-        $data['listado'] = $listado;
-        $data['classes'] = $classes;
-
-
-        $this->view->show("modificar_disponiblitat.php",$data); 
-
+    public function disponiblitat($request) {
+        $listado = $this->disponibilitatDAO->getAllDisponibilities();
+        // Resto del código...
     }
 
-    public function gravar_modificacio($request){
-        require 'models/DisponiblitatModel.php';
-        $items = new DisponibilitatModel();
-        $consulta = $items->gravar_modificacio($request);
-        $data['consulta'] = $consulta;
-
-
-        $this->view->show("resultat.php", $data);
-
-
+    public function formulario_modificar($request) {
+        $listado = $this->disponibilitatDAO->getDisponibilityById($request["param"]);
+        $classes = $this->disponibilitatDAO->getAllWorkers();
+        // Resto del código...
     }
 
-    
-    public function eliminar($request){
-        require 'models/DisponiblitatModel.php';
-        $items = new DisponibilitatModel();
-        $consulta = $items->eliminar($request);
-        $data['consulta'] = $consulta;
-        if(isset($_GET["param"])){
-            $id = $_GET["param"];
-            $model = new DisponibilitatModel();
-            $model->eliminar($id);
-        }
-
-        $this->view->show("resultat.php", $data);
-
+    public function gravar_modificacio($request) {
+        $consulta = $this->disponibilitatDAO->updateDisponibility($request["id_treballador"], $request["diponiblitat"]);
+        // Resto del código...
     }
 
+    public function eliminar($request) {
+        $consulta = $this->disponibilitatDAO->deleteDisponibility($request["param"]);
+        // Resto del código...
+    }
 
-
-
-
-    public function agregar()
-    {
+    public function agregar() {
         echo 'Aquí incluiremos nuestro formulario para insertar items';
     }
 }
-?>      
+?>

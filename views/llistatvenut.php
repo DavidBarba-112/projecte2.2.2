@@ -48,9 +48,8 @@
     background-color: #004080;
   }
 </style>
-
 <body>
-    <h2 id="titol">Ocupacions</h2>
+    <h2 id="titol">Llistat</h2>
     <table  border="1">
         <thead><tr><?php
         $item = $listado->fetch();
@@ -66,13 +65,13 @@
             foreach($item as $key=>$value) { ?>
                 <td><?php echo $value ?></td><?php
             } ?>
-            <td><a href="index.php?controlador=Ocupacions&accion=formulario_modificar&param=<?php echo $item["id_ocupacio"] ?>">hola</a></td>
-            <td><a href="index.php?controlador=Ocupacions&accion=eliminar&param=<?php echo $item["id_ocupacio"] ?>">Eliminar</a></td>
+            <td><a href="index.php?controlador=Disponiblitat&accion=formulario_modificar&param=<?php echo $item["id_disponible"] ?>">Editar</a></td>
+            <td><a href="index.php?controlador=Disponiblitat&accion=eliminar&param=<?php echo $item["id_disponible"] ?>">Eliminar</a></td>
         </tr> <?php
         } while($item = $listado->fetch());  ?>
     
     </table>   
-    <a href="#">Afegir Ocupacio</a>
+    <a href="#">Afegir Disponiblitat</a>
     <!-- Queda pendent afegir i eliminar -->
 </body>
 </html>

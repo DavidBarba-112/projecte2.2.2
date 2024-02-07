@@ -33,8 +33,12 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['rol'] != 'Administrador') {
               <ul class="sidebar__content-menu">
                 <li > <a href="/MVC/index.php?controlador=Ocupacions&accion=ocupacions">Llistat Ocupacions</a></li>
                 <li><a href="/MVC/index.php?controlador=Hora&accion=hora">Llistat hores</a></li>
+                <li><a href="/MVC/index.php?controlador=Disponiblitat&accion=disponiblitat">Llistat disponibilitat</a></li>
                 <li><a href="/MVC/index.php?controlador=Hora&accion=hora">Llistat eff</a></li>
-                <li><a href="/MVC/index.php?controlador=Hora&accion=hora">Llistat eff</a></li>
+                <li > <a href="/projecte2.2.2/index.php?controlador=Llistat&accion=llistat">Llistat llibres</a></li>
+                <li > <a href="/projecte2.2.2/index.php?controlador=Llistatvenut&accion=llistatvenut">Llistat llibres venuts</a></li>
+
+
                 <li><a href="calendari.html">Calendari</a></li>
  
 

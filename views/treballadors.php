@@ -49,7 +49,7 @@
 </style>
 
 <body>
-    <h2 id="titol">Treballadors</h2>
+    <h2 id="titol">Treballadors2</h2>
     <table  border="1">
         <thead><tr><?php
         $item = $listado->fetch();
@@ -65,8 +65,8 @@
             foreach($item as $key=>$value) { ?>
                 <td><?php echo $value ?></td><?php
             } ?>
-            <td><a href="index.php?controlador=Treballadors&accion=formulario_modificar&param=<?php echo $item["id_treballador"] ?>">Editar</a></td>
-            <td><a href="index.php?controlador=Treballadors&accion=eliminar&param=<?php echo $item["id_treballador"] ?>">Eliminar</a></td>
+            <td><a href="index.php?controlador=Treballadors&accion=formulario_modificar&param=<?php echo $item["id_usuario"] ?>">Editar</a></td>
+            <td><a href="index.php?controlador=Treballadors&accion=eliminar&param=<?php echo $item["id"] ?>">Eliminar</a></td>
         </tr> <?php
         } while($item = $listado->fetch());  ?>
     

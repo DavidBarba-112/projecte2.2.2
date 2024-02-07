@@ -1,72 +1,63 @@
 <?php
-class DisponibilitatModel
-{
+
+require_once 'SPDO.php'; // Asumiendo que aquí está la clase SPDO.
+
+class DisponibilitatDAO {
     protected $db;
- 
-    public function __construct()
-    {
-        //Traemos la única instancia de PDO
+
+    public function __construct() {
         $this->db = SPDO::singleton();
     }
 
+    public function getAllDisponibilities() {
+        $query = 'SELECT disponiblitat.id_disponible, disponiblitat.diponiblitat, treballadors.nom
+                  FROM disponiblitat
+                  JOIN treballadors ON disponiblitat.id_treballador = treballadors.id_treballador';
 
+        $statement = $this->db->prepare($query);
+        $statement->execute();
 
-
-
-    public function listadoTotal5()
-    {
-        //realizamos la consulta de todos los items
-        $consulta = $this->db->prepare('SELECT disponiblitat.id_disponible, disponiblitat.diponiblitat, treballadors.nom
-        FROM disponiblitat
-        JOIN treballadors ON disponiblitat.id_treballador = treballadors.id_treballador;');
-        $consulta->setFetchMode(PDO::FETCH_ASSOC);
-
-       $consulta->execute();
-        //devolvemos la colección para que la vista la presente.
-        return $consulta;
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getDisponibilityById($id) {
+        $query = 'SELECT * FROM disponiblitat WHERE id_disponible = :id';
 
+        $statement = $this->db->prepare($query);
+        $statement->bindParam(':id', $id);
+        $statement->execute();
 
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
 
+    public function getAllWorkers() {
+        $query = 'SELECT * FROM treballadors';
 
+        $statement = $this->db->prepare($query);
+        $statement->execute();
 
-public function datos_formulario($id){
-    $consulta = $this->db->prepare("SELECT * FROM disponiblitat WHERE id_disponible = $id");
-    $consulta->setFetchMode(PDO::FETCH_ASSOC);
-    $consulta->execute();
-    return $consulta;
-}
-public function listadoClases()
-{
-    //realizamos la consulta de todos los items
-    $consulta = $this->db->prepare('SELECT * FROM treballadors');
-    $consulta->setFetchMode(PDO::FETCH_ASSOC);
-    $consulta->execute();
-    //devolvemos la colección para que la vista la presente.
-    return $consulta;
-}
-public function gravar_modificacio($request){
-    //realizamos la consulta de todos los items
-    $consulta = $this->db->prepare("UPDATE disponiblitat SET diponiblitat='".$request["diponiblitat"]."' WHERE id_treballador=".$request["id_treballador"] );
-    $consulta->setFetchMode(PDO::FETCH_ASSOC);
-    $consulta->execute();
-    //devolvemos la colección para que la vista la presente.
-    return $consulta;
-}
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-public function eliminar($id){
-    //realizamos la consulta de todos los items
-    $consulta = $this->db->prepare(" DELETE FROM disponiblitat WHERE id_disponible=$id " );
-    $consulta->setFetchMode(PDO::FETCH_ASSOC);
-    $consulta->execute();
-    //devolvemos la colección para que la vista la presente.
+    public function updateDisponibility($id, $newAvailability) {
+        $query = 'UPDATE disponiblitat SET diponiblitat = :availability WHERE id_disponible = :id';
 
-    return $consulta;
-}
+        $statement = $this->db->prepare($query);
+        $statement->bindParam(':id', $id);
+        $statement->bindParam(':availability', $newAvailability);
+        $statement->execute();
 
+        return $statement->rowCount();
+    }
 
+    public function deleteDisponibility($id) {
+        $query = 'DELETE FROM disponiblitat WHERE id_disponible = :id';
 
+        $statement = $this->db->prepare($query);
+        $statement->bindParam(':id', $id);
+        $statement->execute();
 
+        return $statement->rowCount();
+    }
 }
 ?>

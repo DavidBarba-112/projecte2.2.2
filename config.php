@@ -9,7 +9,7 @@ $config->set('viewsFolder', 'views/');
 
 
 $config->set('dbhost', 'localhost');
-$config->set('dbname', 'mercadona');
+$config->set('dbname', 'bibliotecas');
 $config->set('dbuser', 'pma');
 $config->set('dbpass', 'P@ssw0rd');
 ?>

@@ -88,15 +88,15 @@ a:hover {
             <?php 
                 $item = $listado->fetch();
                 foreach($item as $key=>$value) { 
-                    if($key == "id_treballador"){ ?>
+                    if($key == "id_usuario"){ ?>
                         <tr>
-                            <td><label for=id_treballador>id_treballador </label></td>
-                            <td><SELECT id=id_treballador name=id_treballador>
+                            <td><label for=id_usuario>id_usuario </label></td>
+                            <td><SELECT id=id_usuario name=id_usuario>
                                 <option value=0></option> <?php
                                 while($class_reg = $classes->fetch()){ ?>
-                                    <option value=<?php echo $class_reg["id_treballador"] ?>
-                                    <?php echo ($class_reg["id_treballador"]==$value ?" selected":"") ?>>
-                                        <?php echo $class_reg["id_treballador"] ?>
+                                    <option value=<?php echo $class_reg["id_usuario"] ?>
+                                    <?php echo ($class_reg["id_usuario"]==$value ?" selected":"") ?>>
+                                        <?php echo $class_reg["id_usuario"] ?>
                                     </option><?php
 
                                 }?>

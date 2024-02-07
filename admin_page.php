@@ -31,11 +31,8 @@
             </div>
             <div class="sidebar__content">
               <ul class="sidebar__content-menu">
-                <li><a href="/MVC/index.php?controlador=Treballadors&accion=treballadors">Llistat Treballadors</a></li>
-                <li > <a href="/MVC/index.php?controlador=Ocupacions&accion=ocupacions">Llistat Ocupacions</a></li>
-                <li><a href="/MVC/index.php?controlador=Hora&accion=hora">Llistat hores</a></li>
-                <li><a href="/MVC/index.php?controlador=Hora&accion=hora">Llistat eff</a></li>
-                <li><a href="/MVC/index.php?controlador=Hora&accion=hora">Llistat eff</a></li>
+                <li><a href="/projecte2.2.2/index.php?controlador=Treballadors&accion=treballadors">Llistat Treballadors</a></li>
+
                 <li><a href="calendari.html">Calendari</a></li>
  
 
