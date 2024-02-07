@@ -10,7 +10,7 @@
 
 
 <body>
-    <form action="index2.php" method="post">
+    <form action="formulari_login.php" method="post">
         
         <div class="login-wrapper">
           <div class="login-left">
