@@ -19,6 +19,17 @@ class TreballadorsModel
 
     }
 
+
+    public function listadoClases($id)
+    {
+        //realizamos la consulta de todos los items
+        $consulta = $this->db->prepare("SELECT * FROM llistat_llibres WHERE id_usuario=$id ");
+        $consulta->setFetchMode(PDO::FETCH_ASSOC);
+        $consulta->execute();
+        //devolvemos la colección para que la vista la presente.
+        return $consulta;
+    }
+
     public function datos_formulario($id){
         $consulta = $this->db->prepare("SELECT * FROM usuarios WHERE id_usuario = $id");
         $consulta->setFetchMode(PDO::FETCH_ASSOC);

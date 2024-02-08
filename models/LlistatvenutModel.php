@@ -11,7 +11,7 @@ class LlistatvenutModel
 
 
     public function llistat2(){
-        $consulta = $this->db->prepare(' SELECT * FROM llistat_llibres_venuts');
+        $consulta = $this->db->prepare('SELECT * FROM vista_llibres_venuts;');
 
             $consulta->setFetchMode(PDO::FETCH_ASSOC);
             $consulta->execute();

@@ -41,11 +41,11 @@ public function formulario_modificar($request){
     $items = new TreballadorsModel();
 
     $listado = $items->datos_formulario($request ["param"]);
-    //$classes = $items->listadoClases($request ["param"]);
+    $classes = $items->listadoClases($request ["param"]);
     echo $classes->rowCount();
 
     $data['listado'] = $listado;
-    //$data['classes'] = $classes;
+    $data['classes'] = $classes;
 
 
     $this->view->show("modificar_treballador.php",$data); 

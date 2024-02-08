@@ -35,7 +35,11 @@ CREATE TABLE llistat_llibres(
     nom VARCHAR (50),
     num_serie INT,
     preu INT,
-    categoria VARCHAR (50)
+    categoria VARCHAR (50),
+    id_usuario INT,
+    FOREIGN KEY(id_usuario) REFERENCES usuarios(id_usuario)
+
+
 );
 
 CREATE TABLE llistat_llibres_venuts(
@@ -84,9 +88,9 @@ INSERT INTO usuarios VALUES
 
 
 INSERT INTO llistat_llibres VALUES
-    (1, 'El señor de los anillos', 12345, 25, 'Fantasía'),
-    (2, '1984', 67890, 20, 'Ciencia Ficción'),
-    (3, 'Cien años de soledad', 54321, 30, 'Realismo Mágico');
+    (1, 'El señor de los anillos', 12345, 25, 'Fantasía',1),
+    (2, '1984', 67890, 20, 'Ciencia Ficción',2),
+    (3, 'Cien años de soledad', 54321, 30, 'Realismo Mágico',3);
 
 
 INSERT INTO llistat_llibres_venuts VALUES
@@ -94,3 +98,6 @@ INSERT INTO llistat_llibres_venuts VALUES
     (2, 'Cien años de soledad', 'Realismo Mágico', 30, '2024-01-15');
 
 
+CREATE VIEW vista_llibres_venuts AS
+SELECT id_llibre_venut, nom AS nombre_libro, categoria, preu AS precio, data_venta
+FROM llistat_llibres_venuts;

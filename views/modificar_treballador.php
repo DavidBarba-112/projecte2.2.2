@@ -113,24 +113,10 @@ a:hover {
         </table>
         <input type="submit" value="Grabar dades">
 
-        <table>
-            <?php
-            echo $classes->rowCount();
-            $item = $classes->fetch();
-            print_r($item);
-            foreach($item as $key=>$value) { ?>
-                <th><?php echo $key ?></th><?php
-            }
-            do { ?>
-                <tr><?php
-                foreach($item as $key=>$value) { ?>
-                    <td><?php echo $value ?></td><?php
 
-                } ?>
-            <td><a href="index.php?controlador=Treballadors&accion=formulario_modificar&param=<?php echo $item["id_preferencia"] ?>">Editar </a></td><a href="">Eliminar</a></td>
-                </tr> <?php
-            } while($item = $classes->fetch()); ?>
-        </table>
+
+
+
 
 
 
