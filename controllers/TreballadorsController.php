@@ -64,6 +64,27 @@ public function gravar_modificacio($request){
 
 
 }
+
+public function formulario_agregar() {
+    $this->view->show("formulario_agregar.php");
+}
+public function guardar_nuevo() {
+    require 'models/TreballadorsModel.php';
+    $items = new TreballadorsModel();
+
+    $nombre_usuario = $_POST['nombre_usuario'];
+    $email = $_POST['email'];
+    $documento = $_POST['documento'];
+    $password = $_POST['password'];
+    $rol = $_POST['rol'];
+
+    $items->guardarNuevo($nombre_usuario, $email, $documento, $password, $rol);
+
+    // Redireccionar a alguna página después de guardar, si es necesario
+    // header("Location: index.php");
+}
+
+
 //
 //    public function gravar_modificacio($request){
 //        require 'models/HoraModel.php';

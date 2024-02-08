@@ -96,6 +96,5 @@
             } while($item = $listado->fetch());  ?>
         </tbody>
     </table>   
-    <a href="#">Afegir Treballador</a>
-</body>
+    <a href="index.php?controlador=Treballadors&accion=formulario_agregar&param=<?php echo $item["id_usuario"] ?>">Añadir</a></body>
 </html>

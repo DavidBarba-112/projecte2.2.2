@@ -47,6 +47,17 @@ class TreballadorsModel
         return $consulta;
     }
 
+    public function guardarNuevo($nombre_usuario, $email, $documento, $password, $rol) {
+        $consulta = $this->db->prepare("INSERT INTO usuarios (nombre_usuario, email, documento, password, id_rol) VALUES (:nombre_usuario, :email, :documento, :password, :rol)");
+        $consulta->bindParam(':nombre_usuario', $nombre_usuario);
+        $consulta->bindParam(':email', $email);
+        $consulta->bindParam(':documento', $documento);
+        $consulta->bindParam(':password', $password);
+        $consulta->bindParam(':rol', $rol);
+        $consulta->execute();
+    }
+    
+
 
 }
 ?>
