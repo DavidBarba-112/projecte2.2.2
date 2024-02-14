@@ -11,7 +11,9 @@ class LlistatModel
 
 
     public function listado1(){
-        $consulta = $this->db->prepare(' SELECT * FROM llistat_llibres');
+        $consulta = $this->db->prepare('SELECT l.*, u.nombre_usuario
+        FROM llistat_llibres l
+        JOIN usuarios u ON l.id_usuario = u.id_usuario;');
 
             $consulta->setFetchMode(PDO::FETCH_ASSOC);
             $consulta->execute();
