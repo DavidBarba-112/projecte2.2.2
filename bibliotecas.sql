@@ -94,7 +94,7 @@ INSERT INTO llistat_llibres VALUES
     (4, 'Harry potter', 67890, 20, 'Ciencia Ficción',4),
     (5, ' Tres enigmas para la Organización ', 67890, 20, 'Fantasía',5),
     (6, ' Bajo tierra seca ', 34342, 20, 'Fantasía',4),
-    (7, ' La última función ', 12144, 20, 'Ciencia Ficción',1),
+    (7, ' La última función ', 12144, 20, 'Ciencia Ficción',5),
     (8, ' El hijo olvidado ', 56574, 20, 'Ciencia Ficción',7),
     (9, ' El sentido de consentir ', 99754, 20, 'Realismo Mágico',8),
     (10, ' Las hijas de la criada ', 54663, 20, 'Ciencia Ficción',6);

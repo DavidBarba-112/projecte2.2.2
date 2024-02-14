@@ -28,6 +28,56 @@ class LlistatController
         $this->view->show("llistat.php", $data);
 
     }
+
+    public function formulario_modificar($request){
+        require 'models/LlistatModel.php';
+        $items = new LlistatModel();
+    
+        $listado = $items->datos_formulario($request ["param"]);
+        $classes = $items->listadoClases($request ["param"]);
+        echo $classes->rowCount();
+    
+        $data['listado'] = $listado;
+        $data['classes'] = $classes;
+    
+    
+        $this->view->show("modificar_llistat.php",$data); 
+    
+    }
+
+    public function gravar_modificacio($request){
+        require 'models/LlistatModel.php';
+        $items = new LlistatModel();
+        $consulta = $items->gravar_modificacio($request);
+        $data['consulta'] = $consulta;
+    
+    
+        $this->view->show("resultat.php", $data);
+    
+    
+    }
+
+
+public function afegir_llibre() {
+    $this->view->show("afegir_llibre.php");
+}
+public function guardar_nuevo() {
+    require 'models/LlistatModel.php';
+    $items = new LlistatModel();
+
+    $nom = $_POST['nom'];
+    $num_serie = $_POST['num_serie'];
+    $preu = $_POST['preu'];
+    $categoria = $_POST['categoria'];
+    $id_usuario = $_POST['id_usuario'];
+
+    $items->guardarNuevo($nom, $num_serie, $preu, $categoria, $id_usuario);
+
+    // Redireccionar a alguna página después de guardar, si es necesario
+    // header("Location: index.php");
+}
+
+    
  
     
 

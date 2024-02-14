@@ -1,4 +1,4 @@
-<a href="/projecte2.2.2/index.php?controlador=Treballadors&accion=treballadors">Torna</a>
+<a href="/projecte2.2.2/index2.2.php">Torna</a>
 
 <?php
 

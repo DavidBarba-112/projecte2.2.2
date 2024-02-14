@@ -65,6 +65,7 @@ public function gravar_modificacio($request){
 
 }
 
+
 public function formulario_agregar() {
     $this->view->show("formulario_agregar.php");
 }
@@ -84,42 +85,5 @@ public function guardar_nuevo() {
     // header("Location: index.php");
 }
 
-
-//
-//    public function gravar_modificacio($request){
-//        require 'models/HoraModel.php';
-//        $items = new HorasModel();
-//        $consulta = $items->gravar_modificacio($request);
-//        $data['consulta'] = $consulta;
-//
-//
-//        $this->view->show("resultat.php", $data);
-//
-//
-//
-//
-//    }
-//
-//    public function eliminar($request){
-//        require 'models/HoraModel.php';
-//        $items = new HorasModel();
-//        $consulta = $items->eliminar($request);
-//        $data['consulta'] = $consulta;
-//        if(isset($_GET["param"])){
-//            $id = $_GET["param"];
-//            $model = new HorasModel();
-//            $model->eliminar($id);
-//        }
-//
-//        $this->view->show("resultat.php", $data);
-//
-//    }
-//
-//
-//
-//    public function agregar()
-//    {
-//        echo 'Aquí incluiremos nuestro formulario para insertar items';
-//    }
 }
 ?>      

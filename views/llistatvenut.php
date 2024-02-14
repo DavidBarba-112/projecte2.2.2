@@ -47,9 +47,19 @@
   a:hover {
     background-color: #004080;
   }
+
+  .back-arrow {
+  position: relative;
+  left: 10px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
 </style>
 <body>
     <h2 id="titol">Llistat</h2>
+    <i class="back-arrow">Volver  </i>
+
     <table  border="1">
         <thead><tr><?php
         $item = $listado->fetch();
@@ -74,4 +84,10 @@
     <a href="#">Afegir Disponiblitat</a>
     <!-- Queda pendent afegir i eliminar -->
 </body>
+
+<script>
+  document.querySelector('.back-arrow').addEventListener('click', function() {
+  window.history.back();
+});
+</script>
 </html>

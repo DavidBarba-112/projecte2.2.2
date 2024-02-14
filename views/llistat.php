@@ -47,9 +47,21 @@
   a:hover {
     background-color: #004080;
   }
+
+  .back-arrow {
+  position: relative;
+  left: 10px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
 </style>
 <body>
     <h2 id="titol">Llistat</h2>
+    <br>
+    <i class="back-arrow">Volver  </i>
+
+
     <table  border="1">
         <thead><tr><?php
         $item = $listado->fetch();
@@ -65,13 +77,18 @@
             foreach($item as $key=>$value) { ?>
                 <td><?php echo $value ?></td><?php
             } ?>
-            <td><a href="index.php?controlador=Disponiblitat&accion=formulario_modificar&param=<?php echo $item["id_disponible"] ?>">Editar</a></td>
-            <td><a href="index.php?controlador=Disponiblitat&accion=eliminar&param=<?php echo $item["id_disponible"] ?>">Eliminar</a></td>
+            <td><a href="index.php?controlador=Llistat&accion=formulario_modificar&param=<?php echo $item["id_llibre"] ?>">Editar</a></td>
+            <td><a href="index.php?controlador=Treballadors&accion=eliminar&param=<?php echo $item["id"] ?>">Eliminar</a></td>
+
         </tr> <?php
         } while($item = $listado->fetch());  ?>
     
     </table>   
-    <a href="#">Afegir Disponiblitat</a>
-    <!-- Queda pendent afegir i eliminar -->
+    <a href="index.php?controlador=Llistat&accion=afegir_llibre&param=<?php echo $item["id_llibre"] ?>">Añadir</a></body>
 </body>
+<script>
+  document.querySelector('.back-arrow').addEventListener('click', function() {
+  window.history.back();
+});
+</script>
 </html>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="estil.css">
     <title>Document</title>
 </head>
@@ -13,9 +14,7 @@
 
   // Mostrar el correo del usuario si está autenticado
 session_start();
-if (!isset($_SESSION['user']) || $_SESSION['user']['rol'] != 'Administrador') {
-      echo "Bienvenido, " . $_SESSION['user']['email'];
-}
+
 ?>
 
     <div class="layout">
@@ -24,10 +23,12 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['rol'] != 'Administrador') {
       
           <!-- BEGIN sidebar -->
           <aside class="sidebar">
-            <div class="sidebar__header">
+          <div class="sidebar__header">
                 
                 <a href="personal.html" >
-                    <img src="perfil.png" alt="" srcset="" width="30px" > David</a>
+                     <?php  if (!isset($_SESSION['user']) || $_SESSION['user']['rol'] != 'Administrador') {
+        echo " " . $_SESSION['user']['email'];
+  } ?></a>
             </div>
             <div class="sidebar__content">
               <ul class="sidebar__content-menu">
@@ -67,7 +68,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['rol'] != 'Administrador') {
 
               </div>
               <div class="main__header-heading">
-                <h3>Log out</h3>
+              <h3> <a class="nav-link" style="color:tomato;"href="logout.php?logout=true">Cerrar sesión</a> </h3>
 
               </div>
               
@@ -128,6 +129,23 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['rol'] != 'Administrador') {
       </div> 
 
 
+
     
 </body>
+
+<footer class="site-footer">
+        
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+              <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by 
+           <a href="#">Scanfcode</a>.
+              </p>
+            </div>
+  
+
+          </div>
+        </div>
+  </footer>
+    
 </html>
