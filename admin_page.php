@@ -12,9 +12,7 @@
 <?php
   // Mostrar el correo del usuario si está autenticado
   session_start();
-  if (!isset($_SESSION['user']) || $_SESSION['user']['rol'] != 'Administrador') {
-        echo "Bienvenido, " . $_SESSION['user']['email'];
-  }
+
 // Aquí puedes incluir el contenido específico para el administrador
 ?>
 
@@ -27,7 +25,9 @@
             <div class="sidebar__header">
                 
                 <a href="personal.html" >
-                    <img src="perfil.png" alt="" srcset="" width="30px" > David</a>
+                     <?php  if (!isset($_SESSION['user']) || $_SESSION['user']['rol'] != 'Administrador') {
+        echo " " . $_SESSION['user']['email'];
+  } ?></a>
             </div>
             <div class="sidebar__content">
               <ul class="sidebar__content-menu">
@@ -61,7 +61,7 @@
 
               </div>
               <div class="main__header-heading">
-                <h3>Log out</h3>
+              <h3> <a class="nav-link" style="color:tomato;"href="logout.php?logout=true">Cerrar sesión</a> </h3>
 
               </div>
               
