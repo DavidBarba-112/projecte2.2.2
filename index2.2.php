@@ -3,149 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="estil.css">
+    <link rel="stylesheet" href="estiles.css">
     <title>Document</title>
+
 </head>
 
-    
 <body>
-  <?php
+<?php 
 
-  // Mostrar el correo del usuario si está autenticado
 session_start();
+
 
 ?>
 
-    <div class="layout">
-        <div class="layout__container">
-          <div class="layout__container-before"></div>
+
+    <header>
+        <hgroup>
+          <h1>
+         <?php if (!isset($_SESSION['user']) || $_SESSION['user']['rol'] != 'Administrador') {
+        echo "Benbingut " . $_SESSION['user']['email'];
+  }  ?>
+          </h1>
+          <a  href="logout.php?logout=true">&larr; Cerrar session</a>
+        </hgroup>
+      </header>
       
-          <!-- BEGIN sidebar -->
-          <aside class="sidebar">
-          <div class="sidebar__header">
-                
-                <a href="personal.html" >
-                     <?php  if (!isset($_SESSION['user']) || $_SESSION['user']['rol'] != 'Administrador') {
-        echo " " . $_SESSION['user']['email'];
-  } ?></a>
-            </div>
-            <div class="sidebar__content">
-              <ul class="sidebar__content-menu">
-               <!-- <li > <a href="/MVC/index.php?controlador=Ocupacions&accion=ocupacions">Llistat Ocupacions</a></li>
-                <li><a href="/MVC/index.php?controlador=Hora&accion=hora">Llistat hores</a></li>
-                <li><a href="/MVC/index.php?controlador=Disponiblitat&accion=disponiblitat">Llistat disponibilitat</a></li>
-                <li><a href="/MVC/index.php?controlador=Hora&accion=hora">Llistat eff</a></li> -->
-                <li > <a href="/projecte2.2.2/index.php?controlador=Llistat&accion=llistat">Llistat llibres</a></li>
-                <li > <a href="/projecte2.2.2/index.php?controlador=Llistatvenut&accion=llistatvenut">Llistat llibres venuts</a></li>
-
-
-                <li><a href="calendari.html">Calendari</a></li>
- 
-
-
-                
-
-
-                <!--<li class="sidebar--active">
-                  <ul>
-                    <li><a href="#">Category 5</a></li>
-                    <li><a href="#">Category 5.1</a></li>
-                    <li><a href="#">Category 5.2</a></li>
-                  </ul>
-                </li> -->
-              </ul>
-            </div>
-          </aside>
-          <!--  //END sidebar -->
-          
-          <!-- BEGIN main -->
-          <main class="main">
+      <nav>
+        <ul>
+          <li><a class="brick dashboard" href="/projecte2.2.2/index.php?controlador=Llistat&accion=llistat"> <img src="libro.png" width="3px" height="4px" span class='icon ion-home'></span>Llistat Llibres</a></li>
+          <li><a class="brick pages" href="/projecte2.2.2/index.php?controlador=Llistatvenut&accion=llistatvenut"> <img src="librov.png" span class='icon ion-document'></span>Libros vendidos</a></li>
+          <li><a class="brick navigation" href="#"><span class='icon ion-android-share-alt'></span>Navigation</a></li>
+          <li><a class="brick users" href="#"><span class='icon ion-person'></span>Users</a></li>
+          <li><a class="brick settings" href="#"><span class='icon ion-gear-a'></span>Website Settings</a></li>
+        </ul>
+      </nav>
       
-            <div class="main__header">
-              <div class="main__header-heading">
-                <h1>Dashboard</h1>
-
-              </div>
-              <div class="main__header-heading">
-              <h3> <a class="nav-link" style="color:tomato;"href="logout.php?logout=true">Cerrar sesión</a> </h3>
-
-              </div>
-              
-              <div class="main__header-user">
-                <button type="button" class="main__header-user-toggle" data-toggle="dropdown" data-toggle-for="user-menu" role="button">
-                  <span class="main__header-user-toggle-picture">
-                    <img src="holder.js/40x40/thumb" alt="">
-                  </span>
-                </button>
-                <div class="main__header-user-menu" id="user-menu">
-                  <div class="main__header-user-menu-header">
-                    <span>Username</span>
-                  </div>
-                  <ul class="main__header-user-menu-content">
-                    <li><a href="#"><i class="icon icon--dashboard"></i>Dashboard</a></li>
-                    <li><a href="#"><i class="icon icon--profile"></i>My profile</a></li>
-                    <li><a href="#"><i class="icon icon--settings"></i>Settings</a></li>
-                    <li><a href="#"><i class="icon icon--help"></i>Help center</a></li>
-                    <li><a href="#"><i class="icon icon--sign-out"></i>Sign out</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          
-            <div class="main__content">
-              <p>Aqui con ajax mostrar las tablas</p>
-                
-            </div>
-        </main>
-        <!--  //END main -->
-          
-        <div class="layout__container-after"></div>
+      <div id="content" class="pages">
       
-        <script id="list-template" type="text/x-handlebars-template">
-          <div class="items">
-            <div class="items__inner">
-              <ul class="items__inner-header">
-                <li><h3>Heading 1</h3></li>
-                <li><h3>Heading 2</h3></li>
-                <li><h3>Heading 3</h3></li>
-                <li><h3>Heading 4</h3></li>
-                <li class="items__inner-header--action"></li>
-              </ul>
-              {{#each items}}
-              <ul class="items__inner-content">
-                <li>Item 1</li>
-                <li>Item 1</li>
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li class="items__inner-content--action">
-                  <button><span>Action</span></button>
-                </li>
-              </ul>
-              {{/each}}
-            </div>
-        </script>
-          
-      </div> 
-
-
-
+        <header>
+          <div class="brick identify">
+            <span class="icon ion-document"></span>
+          </div>
+      
+          <div class="brick title">
+            
+            <h2>Home Page</h2>
+          </div>
+      
+          <div class="brick close">
+            <span class="text">Close</span>
+            <span class="icon ion-close"></span>
+          </div>
+      
+      
+          <div class="brick save">
+            <span class="text">Save</span>
+            <span class="icon ion-checkmark"></span>
+          </div>
+      
+        </header>
+      
+      
+      
+        <div class="brick closed">
+          <hgroup>
+            <h2>Main Headline</h2>
+            <a href="#" class="icon ion-close js-close close"></a>
+            <form>
+              <input type="text" />
+            </form>
+          </hgroup>
+        </div>
+      
+        <div class="brick closed">
+          <hgroup>
+            <h2>About Me</h2>
+            <a href="#" class="icon ion-close js-close close"></a>
+            <form>
+              <textarea></textarea>
+            </form>
+          </hgroup>
+        </div>
+      
+        <div class="brick closed">
+          <hgroup>
+            <h2>Gallery</h2>
+            <a href="#" class="icon ion-close js-close close"></a>
+            <form>
+              <textarea></textarea>
+            </form>
+          </hgroup>
+        </div>
+      
+        <div class="brick closed">
+          <hgroup>
+            <h2>Page Settings</h2>
+            <a href="#" class="icon ion-close js-close close"></a>
+            <form>
+              <textarea></textarea>
+            </form>
+          </hgroup>
+        </div>
+      
+      
+      </div>
+      
+      <footer>
+      
+      </footer>
+      
+      
     
 </body>
-
-<footer class="site-footer">
-        
-        <div class="container">
-          <div class="row">
-            <div class="col-md-8 col-sm-6 col-xs-12">
-              <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by 
-           <a href="#">Scanfcode</a>.
-              </p>
-            </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script>
+        (function() {
+    var tap;
   
+    tap = "click";
+  
+    if (Modernizr.touch) {
+      tap = "touchstart";
+    }
+  
+    $(document).on(tap, '.brick.closed', function(event) {
+      var $this;
+      $this = $(this);
+      $this.animate({
+        'width': '100%'
+      }, 'fast', function() {});
+      $this.removeClass('closed');
+      return $this.addClass('open');
+    });
+  
+    $(document).on(tap, '.brick a.js-close', function(event) {
+      var $brick;
+      $brick = $(this).closest('.brick');
+      return $brick.animate({
+        'width': '120px'
+      }, 'fast', function() {
+        $brick.removeClass('open');
+        return $brick.addClass('closed');
+      });
+    });
+  
+  }).call(this);
+  
+  //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiPGFub255bW91cz4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQSxNQUFBOztFQUFBLEdBQUEsR0FBTTs7RUFDTixJQUFxQixTQUFTLENBQUMsS0FBL0I7SUFBQSxHQUFBLEdBQUssYUFBTDs7O0VBRUEsQ0FBQSxDQUFFLFFBQUYsQ0FBVyxDQUFDLEVBQVosQ0FBZSxHQUFmLEVBQW9CLGVBQXBCLEVBQXFDLFFBQUEsQ0FBQyxLQUFELENBQUE7QUFDckMsUUFBQTtJQUFFLEtBQUEsR0FBUSxDQUFBLENBQUUsSUFBRjtJQUNSLEtBQUssQ0FBQyxPQUFOLENBQWM7TUFBRSxPQUFBLEVBQVM7SUFBWCxDQUFkLEVBQW1DLE1BQW5DLEVBQTJDLFFBQUEsQ0FBQSxDQUFBLEVBQUEsQ0FBM0M7SUFDQSxLQUFLLENBQUMsV0FBTixDQUFrQixRQUFsQjtXQUNBLEtBQUssQ0FBQyxRQUFOLENBQWUsTUFBZjtFQUptQyxDQUFyQzs7RUFNQSxDQUFBLENBQUUsUUFBRixDQUFXLENBQUMsRUFBWixDQUFlLEdBQWYsRUFBb0IsbUJBQXBCLEVBQXlDLFFBQUEsQ0FBQyxLQUFELENBQUE7QUFDekMsUUFBQTtJQUFFLE1BQUEsR0FBUyxDQUFBLENBQUUsSUFBRixDQUFPLENBQUMsT0FBUixDQUFnQixRQUFoQjtXQUNULE1BQU0sQ0FBQyxPQUFQLENBQWU7TUFBRSxPQUFBLEVBQVM7SUFBWCxDQUFmLEVBQXFDLE1BQXJDLEVBQTZDLFFBQUEsQ0FBQSxDQUFBO01BQzNDLE1BQU0sQ0FBQyxXQUFQLENBQW1CLE1BQW5CO2FBQ0EsTUFBTSxDQUFDLFFBQVAsQ0FBZ0IsUUFBaEI7SUFGMkMsQ0FBN0M7RUFGdUMsQ0FBekM7QUFUQSIsInNvdXJjZXNDb250ZW50IjpbInRhcCA9IFwiY2xpY2tcIlxudGFwID1cInRvdWNoc3RhcnRcIiBpZiBNb2Rlcm5penIudG91Y2hcblxuJChkb2N1bWVudCkub24gdGFwLCAnLmJyaWNrLmNsb3NlZCcsIChldmVudCkgLT5cbiAgJHRoaXMgPSAkKHRoaXMpXG4gICR0aGlzLmFuaW1hdGUgeyAnd2lkdGgnOiAnMTAwJScgfSwgJ2Zhc3QnLCAoKSAtPlxuICAkdGhpcy5yZW1vdmVDbGFzcygnY2xvc2VkJylcbiAgJHRoaXMuYWRkQ2xhc3MoJ29wZW4nKVxuXG4kKGRvY3VtZW50KS5vbiB0YXAsICcuYnJpY2sgYS5qcy1jbG9zZScsIChldmVudCkgLT5cbiAgJGJyaWNrID0gJCh0aGlzKS5jbG9zZXN0KCcuYnJpY2snKVxuICAkYnJpY2suYW5pbWF0ZSB7ICd3aWR0aCc6ICcxMjBweCcgfSwgJ2Zhc3QnLCAoKSAtPlxuICAgICRicmljay5yZW1vdmVDbGFzcygnb3BlbicpXG4gICAgJGJyaWNrLmFkZENsYXNzKCdjbG9zZWQnKVxuIl19
+  //# sourceURL=coffeescript
 
-          </div>
-        </div>
-  </footer>
-    
+</script>
 </html>
