@@ -42,14 +42,14 @@ session_start();
       
         <header>
           <div class="brick identify">
-           <img src="time-and-calendar2.png" <span class="icon ion-document"></span>
+           <img src="time-and-calendar2.png" span class="icon ion-document"></span>
           </div>
       
-          <div class="brick title">
+          <a href="#"><div class="brick title">
             
-          <h2><a href="#">Calendario</h2>
+          <h2>Calendario</h2>
 
-          </div>
+          </div> </a> 
       
           <div class="brick close">
             <span class="text">Close</span>

@@ -40,15 +40,17 @@ session_start();
       
       <div id="content" class="pages">
       
-        <header>
+        
+      <header>
           <div class="brick identify">
-            <span class="icon ion-document"></span>
+           <img src="time-and-calendar2.png" span class="icon ion-document"></span>
           </div>
       
-          <div class="brick title">
+          <a href="#"><div class="brick title">
             
-            <h2>Home Page</h2>
-          </div>
+          <h2>Calendario</h2>
+
+          </div> </a> 
       
           <div class="brick close">
             <span class="text">Close</span>
@@ -60,6 +62,7 @@ session_start();
             <span class="text">Save</span>
             <span class="icon ion-checkmark"></span>
           </div>
+          
       
         </header>
       
@@ -67,7 +70,7 @@ session_start();
       
         <div class="brick closed">
           <hgroup>
-            <h2>Main Headline</h2>
+            <h2>Crear ....</h2>
             <a href="#" class="icon ion-close js-close close"></a>
             <form>
               <input type="text" />
@@ -77,7 +80,7 @@ session_start();
       
         <div class="brick closed">
           <hgroup>
-            <h2>About Me</h2>
+            <h2>Crear ....</h2>
             <a href="#" class="icon ion-close js-close close"></a>
             <form>
               <textarea></textarea>
@@ -87,7 +90,7 @@ session_start();
       
         <div class="brick closed">
           <hgroup>
-            <h2>Gallery</h2>
+            <h2>Crear ....</h2>
             <a href="#" class="icon ion-close js-close close"></a>
             <form>
               <textarea></textarea>
@@ -97,7 +100,7 @@ session_start();
       
         <div class="brick closed">
           <hgroup>
-            <h2>Page Settings</h2>
+            <h2>Crear ....</h2>
             <a href="#" class="icon ion-close js-close close"></a>
             <form>
               <textarea></textarea>
@@ -107,7 +110,6 @@ session_start();
       
       
       </div>
-      
       <footer>
       
       </footer>
