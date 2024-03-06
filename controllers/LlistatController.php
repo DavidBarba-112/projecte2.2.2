@@ -114,20 +114,20 @@ public function guardar_nuevo() {
 //
 //    }
 //
-//    public function eliminar($request){
-//        require 'models/HoraModel.php';
-//        $items = new HorasModel();
-//        $consulta = $items->eliminar($request);
-//        $data['consulta'] = $consulta;
-//        if(isset($_GET["param"])){
-//            $id = $_GET["param"];
-//            $model = new HorasModel();
-//            $model->eliminar($id);
-//        }
-//
-//        $this->view->show("resultat.php", $data);
-//
-//    }
+    public function eliminar($request){
+        require 'models/LlistatModel.php';
+        $items = new LlistatModel();
+        $consulta = $items->eliminar($request);
+        $data['consulta'] = $consulta;
+        if(isset($_GET["param"])){
+            $id = $_GET["param"];
+            $model = new LlistatModel();
+            $model->eliminar($id);
+        }
+
+        $this->view->show("resultat.php", $data);
+
+    }
 //
 //
 //

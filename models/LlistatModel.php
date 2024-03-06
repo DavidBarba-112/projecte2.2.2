@@ -11,10 +11,12 @@ class LlistatModel
 
 
     public function listado1(){
-        $consulta = $this->db->prepare('SELECT l.*, u.nombre_usuario
-        FROM llistat_llibres l
-        JOIN usuarios u ON l.id_usuario = u.id_usuario
-        ORDER BY l.id_llibre;');
+        //$consulta = $this->db->prepare('SELECT l.*, u.nombre_usuario
+        //FROM llistat_llibres l
+        //JOIN usuarios u ON l.id_usuario = u.id_usuario
+        //ORDER BY l.id_llibre;');
+        $consulta = $this->db->prepare('SELECT id,created,price,nom FROM images');
+
     
         $consulta->setFetchMode(PDO::FETCH_ASSOC);
         $consulta->execute();
@@ -107,15 +109,15 @@ class LlistatModel
     //}
 //
 //
-    //public function eliminar($id)
-//{
-    //$consulta = $this->db->prepare(" DELETE FROM hora WHERE id_hores = $id ");
-    //$consulta->setFetchMode(PDO::FETCH_ASSOC);
+    public function eliminar($id)
+{
+    $consulta = $this->db->prepare(" DELETE FROM images WHERE id = $id ");
+    $consulta->setFetchMode(PDO::FETCH_ASSOC);
+
+    $consulta->execute();
+    return $consulta;
 //
-    //$consulta->execute();
-    //return $consulta;
-//
-//}
+}
 
 }
 ?>

@@ -258,7 +258,7 @@ html {
     #content{
       min-height: 100%;
       margin-left: 282px;
-      font-size: 0;
+      font-size: 10px;
     }
   
     #content .brick{

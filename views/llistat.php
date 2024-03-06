@@ -62,6 +62,9 @@
     <i class="back-arrow">Volver  </i>
 
 
+
+
+
     <table  border="1">
         <thead><tr><?php
         $item = $listado->fetch();
@@ -78,7 +81,7 @@
                 <td><?php echo $value ?></td><?php
             } ?>
             <td><a href="index.php?controlador=Llistat&accion=formulario_modificar&param=<?php echo $item["id_llibre"] ?>">Editar</a></td>
-            <td><a href="index.php?controlador=Treballadors&accion=eliminar&param=<?php echo $item["id"] ?>">Eliminar</a></td>
+            <td><a href="index.php?controlador=Llistat&accion=eliminar&param=<?php echo $item["id"] ?>">Eliminar</a></td>
 
         </tr> <?php
         } while($item = $listado->fetch());  ?>
@@ -90,5 +93,6 @@
   document.querySelector('.back-arrow').addEventListener('click', function() {
   window.history.back();
 });
+
 </script>
 </html>
