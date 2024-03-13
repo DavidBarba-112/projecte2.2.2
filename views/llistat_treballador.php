@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Borbadeen peru</title>
+    <title>Llistat Treballador  </title>
 </head>
 
 
@@ -81,7 +81,7 @@
                 <td><?php echo $value ?></td><?php
             } ?>
             <td><a href="index.php?controlador=Llistat&accion=formulario_modificar&param=<?php echo $item["id_llibre"] ?>">Editar</a></td>
-            <td><a href="index.php?controlador=Llistat&accion=eliminar&param=<?php echo $item[`id`] ?>">Eliminar</a></td>
+            <td><a href="index.php?controlador=Llistat&accion=eliminar&param=<?php echo $item["id"] ?>">Eliminar</a></td>
 
         </tr> <?php
         } while($item = $listado->fetch());  ?>

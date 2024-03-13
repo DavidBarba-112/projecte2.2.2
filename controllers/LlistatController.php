@@ -29,6 +29,25 @@ class LlistatController
 
     }
 
+
+    public function llistatt($request)
+    {
+        //Incluye el modelo que corresponde
+        require 'models/LlistatModel.php';
+ 
+        //Creamos una instancia de nuestro "modelo"
+        $items = new LlistatModel();
+ 
+        //Le pedimos al modelo todos los items
+        $listado = $items->listado1();
+        //Pasamos a la vista toda la información que se desea representar
+        $data['listado'] = $listado;
+        //Finalmente presentamos nuestra plantilla
+        $this->view->show("llistat_treballador.php", $data);
+
+    }
+
+
     public function formulario_modificar($request){
         require 'models/LlistatModel.php';
         $items = new LlistatModel();

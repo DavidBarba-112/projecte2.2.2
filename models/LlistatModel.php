@@ -15,7 +15,7 @@ class LlistatModel
         //FROM llistat_llibres l
         //JOIN usuarios u ON l.id_usuario = u.id_usuario
         //ORDER BY l.id_llibre;');
-        $consulta = $this->db->prepare('SELECT id,created,price,nom FROM images');
+        $consulta = $this->db->prepare('SELECT nom,created,price     FROM images');
 
     
         $consulta->setFetchMode(PDO::FETCH_ASSOC);
@@ -111,7 +111,7 @@ class LlistatModel
 //
     public function eliminar($id)
 {
-    $consulta = $this->db->prepare(" DELETE FROM images WHERE id = $id ");
+    $consulta = $this->db->prepare(" DELETE FROM images WHERE id = `$id` ");
     $consulta->setFetchMode(PDO::FETCH_ASSOC);
 
     $consulta->execute();
