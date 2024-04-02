@@ -1,4 +1,8 @@
-    <!DOCTYPE html>
+<?php
+session_start(); // Inicia la sesión (si no está iniciada)
+?>
+
+<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -254,21 +258,20 @@
 
     </style>
     <body>
-        <?php 
-        session_start();
-        ?>
-        <header>
-            <hgroup>
-                <h1>
-                    <?php 
-                    if (!isset($_SESSION['user']) || $_SESSION['user']['rol'] != 'Administrador') {
-                        echo "Benbingut " . $_SESSION['user']['email'];
-                    }  
-                    ?>
-                </h1>
-                <a  href="logout.php?logout=true">&larr; Cerrar session</a>
-            </hgroup>
-        </header>
+       
+
+    <?php
+    // Verificar si hay un usuario autenticado en la sesión
+    if (isset($_SESSION['user'])) {
+        // Mostrar el nombre del usuario
+        echo "<p>Bienvenido, " . $_SESSION['user']['nombre'] . "!</p>";
+    } else {
+        // Si no hay usuario autenticado, redirigir a la página de inicio de sesión
+        header("Location: login.php");
+        exit; // Finalizar la ejecución del script para evitar que se muestre el resto de la página
+    }
+    ?>
+    
         
         <nav>
             <ul>

@@ -23,13 +23,6 @@ CREATE TABLE usuarios (
 );
 
 
-
-
-
-
-
-
-
 CREATE TABLE llistat_llibres(
     id_llibre INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR (50),

@@ -109,14 +109,12 @@ class LlistatModel
     //}
 //
 //
-    public function eliminar($id)
+public function eliminar($id)
 {
-    $consulta = $this->db->prepare(" DELETE FROM images WHERE id = `$id` ");
-    $consulta->setFetchMode(PDO::FETCH_ASSOC);
-
+    $consulta = $this->db->prepare("DELETE FROM images WHERE id = :id");
+    $consulta->bindParam(':id', $id, PDO::PARAM_INT);
     $consulta->execute();
     return $consulta;
-//
 }
 
 }
