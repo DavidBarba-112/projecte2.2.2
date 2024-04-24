@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estiles.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../estiles.css">
     <title>Document</title>
 </head>
 <style>
@@ -324,7 +325,7 @@ table {
             <li><a class="brick dashboard" href="/projecte2.2.2/index.php?controlador=Llistat&accion=llistat"> <img src="libro.png" width="3px" height="4px" span class='icon ion-home'></span>Llistat Llibres</a></li>
             <li><a class="brick pages" href="/projecte2.2.2/index.php?controlador=Llistatvenut&accion=llistatvenut"> <img src="librov.png" span class='icon ion-document'></span>Libros vendidos</a></li>
             <li><a class="brick navigation" href="#"><span class='icon ion-android-share-alt'></span>Navigation</a></li>
-            <li><a class="brick users" href="#"><span class='icon ion-person'></span>Users</a></li>
+            <li><a class="brick users" href="/projecte2.2.2/index.php?controlador=Galeria&accion=listadog"><span class='icon ion-person'></span>Prueba</a></li>
             <li><a class="brick settings" href="#"><span class='icon ion-gear-a'></span>Website Settings</a></li>
         </ul>
     </nav>
@@ -360,120 +361,8 @@ table {
         </header>
 
 		<h1>Gallery</h1>
-    <table>
-        <?php
-        // DB details
-        $dbHost     = 'localhost';
-        $dbUsername = 'pma';
-        $dbPassword = 'P@ssw0rd';
-        $dbName     = 'bibliotecas';
-
-        // Create connection and select DB
-        $db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
-
-        // Check connection
-        if($db->connect_error){
-            die("Connection failed: " . $db->connect_error);
-        }
-
-        // Get image data from database
-        $result = $db->query("SELECT id, image, price, nom FROM images");
-
-        if($result->num_rows > 0){
-            echo '<tr>';
-            $count = 0;
-            while($row = $result->fetch_assoc()){
-                if ($count > 0 && $count % 4 == 0) {
-                    echo '</tr><tr>';
-                }
-                echo '<td>';
-                echo '<img src="data:image/jpeg;base64,'.base64_encode($row['image']).'" style="width: 200px; height: 150px;" />';
-                echo '<br>';
-                echo '<button class="button" onclick="addToCart('.$row['id'].', '.$row['price'].', \''.$row['nom'].'\')">Add to Cart</button>';
-                echo '</td>';
-                $count++;
-            }
-            echo '</tr>';
-        } else {
-            echo '<tr><td colspan="4">No images found...</td></tr>';
-        }
-
-        // Close DB connection
-        $db->close();
-        ?>
-    </table>
-	<div style="background-color: #ddd;">
-    <h2>Shopping Cart</h2>
-    <div id="cart" >
-        <!-- Aquí se mostrarán los productos agregados al carrito -->
-    </div>
-    <div id="total"></div>
-    <button class="button" onclick="payCash()">Pay in Cash</button>
-    <button class="button" onclick="payCard()">Pay with Card</button>
-	</div>
-
-	<script>
-		var cart = {}; // Objeto para almacenar los productos agregados al carrito
-
-        function addToCart(imageId, price, name) {
-	if (cart[imageId]) {
-		// Si el producto ya está en el carrito, aumenta la cantidad
-		cart[imageId].quantity++;
-	} else {
-		// Si es la primera vez que se agrega el producto, crea una nueva entrada en el carrito
-		cart[imageId] = {
-			name: name,
-			price: price,
-			quantity: 1
-            
-		};
-	}
-
-	// Actualiza la vista del carrito
-	updateCartView();
-	// Actualiza el total
-	updateTotal();
-}
-
-
-function updateCartView() {
-    var cartElement = document.getElementById("cart");
-    var cartHTML = "<h3>Carrito de Compras</h3>";
-
-    for (var productId in cart) {
-        var product = cart[productId];
-        var totalPrice = product.price * product.quantity;
-        cartHTML += "<div>Producto: " + product.name + " - Cantidad: " + product.quantity + " - Precio Unitario: $" + product.price + " - Precio Total: $" + totalPrice.toFixed(2) + "</div>";
-    }
-
-    cartElement.innerHTML = cartHTML;
-}
-
-
-
-
-
-function updateTotal() {
-	var total = 0;
-	for (var productId in cart) {
-		var product = cart[productId];
-		total += product.price * product.quantity;
-	}
-	document.getElementById("total").innerHTML = "<h3>Total: $" + total.toFixed(2) + "</h3>";
-}
-
-function payCash() {
-	// Lógica para pagar en efectivo
-	alert("Payment in cash completed.");
-	// Puedes agregar aquí la lógica adicional, como limpiar el carrito o redirigir a otra página.
-}
-
-function payCard() {
-	// Lógica para pagar con tarjeta
-	alert("Payment with card completed.");
-	// Puedes agregar aquí la lógica adicional, como limpiar el carrito o redirigir a otra página.
-}
-	</script>
+        
+        
 </body>
 
 </html>

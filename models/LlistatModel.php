@@ -15,7 +15,7 @@ class LlistatModel
         //FROM llistat_llibres l
         //JOIN usuarios u ON l.id_usuario = u.id_usuario
         //ORDER BY l.id_llibre;');
-        $consulta = $this->db->prepare('SELECT nom,created,price     FROM images');
+        $consulta = $this->db->prepare('SELECT * from llistat_llibres ');
 
     
         $consulta->setFetchMode(PDO::FETCH_ASSOC);

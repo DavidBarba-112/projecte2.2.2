@@ -22,7 +22,8 @@
         }
 
         input[type="file"],
-        input[type="text"] {
+        input[type="text"],
+        select {
             display: block;
             margin-bottom: 20px;
             width: calc(100% - 40px);
@@ -64,10 +65,37 @@
         <label for="nom">Nom:</label>
         <input type="text" name="nom" id="nom">
         <label for="categoria">Categoria:</label>
-        <input type="text" name="categoria" id="categoria">
+        <select name="categoria" id="categoria">
+            <?php
+            // Conexión a la base de datos
+            $conexion = new mysqli("localhost", "pma", "P@ssw0rd", "bibliotecas");
+
+            // Verificar la conexión
+            if ($conexion->connect_error) {
+                die("Error en la conexión: " . $conexion->connect_error);
+            }
+
+            // Consulta SQL para obtener las categorías
+            $sql = "SELECT id_categoria, categoria FROM categoria";
+
+            // Ejecutar la consulta
+            $result = $conexion->query($sql);
+
+            // Si hay resultados, mostrar las opciones
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo "<option value='" . $row["id_categoria"] . "'>" . $row["categoria"] . "</option>";
+                }
+            } else {
+                echo "<option value=''>No hay categorías disponibles</option>";
+            }
+
+            // Cerrar la conexión
+            $conexion->close();
+            ?>
+        </select>
 
         <input type="submit" name="submit" value="UPLOAD">
-        
     </form>
 </body>
 </html>

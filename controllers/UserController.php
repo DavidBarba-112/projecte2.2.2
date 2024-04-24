@@ -17,7 +17,7 @@ class UserController {
             $_SESSION['user'] = $user;
 
             if ($user['rol_nombre'] == 'Administrador') {
-                header("Location: admin_page.php");
+                header("Location: admin_page_copia.php");
             } else {
                 header("Location: index2.2.php");
             }

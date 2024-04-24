@@ -323,7 +323,7 @@ table {
         <ul>
             <li><a class="brick dashboard" href="/projecte2.2.2/index.php?controlador=Llistat&accion=llistat"> <img src="libro.png" width="3px" height="4px" span class='icon ion-home'></span>Llistat Llibres</a></li>
             <li><a class="brick pages" href="/projecte2.2.2/index.php?controlador=Llistatvenut&accion=llistatvenut"> <img src="librov.png" span class='icon ion-document'></span>Libros vendidos</a></li>
-            <li><a class="brick navigation" href="#"><span class='icon ion-android-share-alt'></span>Navigation</a></li>
+            <li><a class="brick navigation" href="/projecte2.2.2/index.php?controlador=Treballadors&accion=treballadors"><img src="perfil.png" class='icon ion-android-share-alt'></span>Admin. Treballadors</a></li>
             <li><a class="brick users" href="#"><span class='icon ion-person'></span>Users</a></li>
             <li><a class="brick settings" href="#"><span class='icon ion-gear-a'></span>Website Settings</a></li>
         </ul>
@@ -341,7 +341,7 @@ table {
 
             </div></a> 
 
-			<a href="form.html"><div class="brick title">
+			<a href="form.php"><div class="brick title">
                 
                 <h2>Añadir</h2>
 
@@ -379,17 +379,19 @@ table {
         // Get image data from database
         $result = $db->query("SELECT id, image, price, nom FROM images");
 
-        if($result->num_rows > 0){
+        if ($result->num_rows > 0) {
             echo '<tr>';
             $count = 0;
-            while($row = $result->fetch_assoc()){
+            while ($row = $result->fetch_assoc()) {
                 if ($count > 0 && $count % 4 == 0) {
                     echo '</tr><tr>';
                 }
                 echo '<td>';
-                echo '<img src="data:image/jpeg;base64,'.base64_encode($row['image']).'" style="width: 200px; height: 150px;" />';
+                echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '" style="width: 200px; height: 150px;" />';
                 echo '<br>';
-                echo '<button class="button" onclick="addToCart('.$row['id'].', '.$row['price'].', \''.$row['nom'].'\')">Add to Cart</button>';
+                // Convertir el precio a float
+                $price = floatval($row['price']);
+                echo '<button class="button" onclick="addToCart(' . $row['id'] . ', ' . $price . ', \'' . $row['nom'] . '\')">Add to Cart</button>';
                 echo '</td>';
                 $count++;
             }
@@ -454,19 +456,25 @@ function updateCartView() {
 
 
 function updateTotal() {
-	var total = 0;
-	for (var productId in cart) {
-		var product = cart[productId];
-		total += product.price * product.quantity;
-	}
-	document.getElementById("total").innerHTML = "<h3>Total: $" + total.toFixed(2) + "</h3>";
+    var total = 0;
+    for (var productId in cart) {
+        var product = cart[productId];
+        total += product.price * product.quantity;
+    }
+    console.log("Total actualizado:", total);
+    document.getElementById("total").innerHTML = "<h3>Total: $" + total.toFixed(2) + "</h3>";
 }
 
+
 function payCash() {
-	// Lógica para pagar en efectivo
-	alert("Payment in cash completed.");
-	// Puedes agregar aquí la lógica adicional, como limpiar el carrito o redirigir a otra página.
+    // Obtener el total del carrito 
+    var totalAmount = parseFloat(document.getElementById("total").textContent.replace('$', ''));
+    // Redirigir a metalico.php con el total del carrito como parámetro
+    window.location.href = 'metalico.php?total=' + totalAmount;
 }
+
+
+
 
 function payCard() {
 	// Lógica para pagar con tarjeta

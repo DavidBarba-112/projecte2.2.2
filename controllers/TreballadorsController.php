@@ -85,5 +85,30 @@ public function guardar_nuevo() {
     // header("Location: index.php");
 }
 
+public function eliminar($request)
+{
+    // Verificamos si se proporcionó un parámetro válido
+    if(isset($request["param"]) && !empty($request["param"])) {
+        //Incluimos el modelo correspondiente
+        require 'models/TreballadorsModel.php';
+
+        //Creamos una instancia del modelo
+        $items = new TreballadorsModel();
+
+        //Obtenemos el ID del trabajador a eliminar
+        $id_trabajador = $request["param"];
+
+        //Eliminamos el trabajador llamando a la función correspondiente en el modelo
+        $items->eliminar($id_trabajador);
+
+        // Redireccionar a alguna página después de eliminar, si es necesario
+        // header("Location: index.php");
+    } else {
+        // Si no se proporciona un parámetro válido, mostrar un mensaje de error o manejarlo de acuerdo a las necesidades del sistema.
+        echo "Error: No se proporcionó un ID de trabajador válido para eliminar.";
+    }
+}
+
+
 }
 ?>      

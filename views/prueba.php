@@ -58,42 +58,37 @@
 }
 </style>
 <body>
-    <h2 id="titol">Treballadors</h2>
+    <h2 id="titol">Llistat</h2>
     <br>
     <i class="back-arrow">Volver  </i>
 
-
-
-    </div>
     <table border="1">
         <thead>
-            <tr><?php
-                $item = $listado->fetch();
-                foreach($item as $key=>$value) { ?>
-                    <th><?php echo $key ?></th><?php
-                } ?>
+            <tr>
+                <?php foreach ($items[0] as $key => $value) : ?>
+                    <th><?php echo $key; ?></th>
+                <?php endforeach; ?>
                 <th>Modificar</th>
                 <th>Eliminar</th>
             </tr>
         </thead>
-        <tbody><?php 
-            do { ?>  
-                <tr><?php
-                    foreach($item as $key=>$value) { ?>
-                        <td><?php echo $value ?></td><?php
-                    } ?>
-                    <td><a href="index.php?controlador=Treballadors&accion=formulario_modificar&param=<?php echo $item["id_usuario"] ?>">Editar</a></td>
-                    <td><a href="index.php?controlador=Treballadors&accion=eliminar&param=<?php echo $item["id_usuario"] ?>">Eliminar</a></td>
-                </tr><?php
-            } while($item = $listado->fetch());  ?>
+        <tbody>
+            <?php foreach ($items as $item) : ?>
+                <tr>
+                    <?php foreach ($item as $key => $value) : ?>
+                        <td><?php echo $value; ?></td>
+                    <?php endforeach; ?>
+                    <td><a href="index.php?controlador=Llistat&accion=formulario_modificar&param=<?php echo $item["id_llibre"]; ?>">Editar</a></td>
+                    <td><a href="index.php?controlador=Llistat&accion=eliminar&param=<?php echo $item["id"]; ?>">Eliminar</a></td>
+                </tr>
+            <?php endforeach; ?>
         </tbody>
-    </table>   
-    <a href="index.php?controlador=Treballadors&accion=formulario_agregar&param=<?php echo $item["id_usuario"] ?>">Añadir</a></body>
-</html>
-
+    </table>
+</body>
 <script>
   document.querySelector('.back-arrow').addEventListener('click', function() {
   window.history.back();
 });
 
 </script>
+</html>
