@@ -22,8 +22,10 @@ class LlistatController
  
         //Le pedimos al modelo todos los items
         $listado = $items->listado1();
+       $categorias = $items->obtenerCategoriasUnicas();
         //Pasamos a la vista toda la información que se desea representar
         $data['listado'] = $listado;
+       $data['categorias'] = $categorias;
         //Finalmente presentamos nuestra plantilla
         $this->view->show("llistat.php", $data);
 
@@ -88,15 +90,17 @@ public function guardar_nuevo() {
     $num_serie = $_POST['num_serie'];
     $preu = $_POST['preu'];
     $categoria = $_POST['categoria'];
-    $id_usuario = $_POST['id_usuario'];
 
-    $items->guardarNuevo($nom, $num_serie, $preu, $categoria, $id_usuario);
+    
+    $items->guardarNuevo($nom, $num_serie, $preu, $categoria);
 
     // Redireccionar a alguna página después de guardar, si es necesario
     // header("Location: index.php");
 }
 
     
+
+
  
     
 

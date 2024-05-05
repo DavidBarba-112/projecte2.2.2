@@ -341,7 +341,8 @@ table {
 
             </div></a> 
 
-			<a href="form.php"><div class="brick title">
+            <a href="index.php?controlador=Llistat&accion=afegir_llibre">
+<div class="brick title">
                 
                 <h2>Añadir</h2>
 

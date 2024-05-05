@@ -1,4 +1,4 @@
-<a href="/projecte2.2.2/admin_page.php">Torna</a>
+<a href="/projecte2.2.2/admin_page_copia.php">Torna</a>
 
 <?php
 

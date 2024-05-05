@@ -78,12 +78,39 @@
         <input type="num" id="preu" name="preu">
 
         <label for="categoria">categoria:</label>
-        <input type="text" id="categoria" name="categoria">
+        <select name="categoria" id="categoria">
+            <?php
+            // Conexión a la base de datos
+            $servername = "localhost";
+            $username = "pma";
+            $password = "P@ssw0rd";
+            $database = "bibliotecas";
 
-        <label for="id_usuario">id_usuario:</label>
-        <input type="num" id="id_usuario" name="id_usuario">
+            $conn = new mysqli($servername, $username, $password, $database);
 
+            // Verificar la conexión
+            if ($conn->connect_error) {
+                die("Conexión fallida: " . $conn->connect_error);
+            }
 
+            // Consulta para obtener las categorías
+            $sql = "SELECT id_categoria, categoria FROM categoria";
+            $result = $conn->query($sql);
+
+            // Comprobar si hay resultados
+            if ($result->num_rows > 0) {
+                // Generar opciones del select
+                while ($row = $result->fetch_assoc()) {
+                    echo "<option value='" . $row["id_categoria"] . "'>" . $row["categoria"] . "</option>";
+                }
+            } else {
+                echo "No hay categorías disponibles";
+            }
+
+            // Cerrar conexión
+            $conn->close();
+            ?>
+        </select>
 
         <input type="submit" value="Guardar">
     </form>

@@ -82,12 +82,16 @@
                 <td><?php echo $value ?></td><?php
             } ?>
             <td><a href="index.php?controlador=Llistat&accion=formulario_modificar&param=<?php echo $item["id_llibre"] ?>">Editar</a></td>
-            <td><a href="index.php?controlador=Llistat&accion=eliminar&param=<?php echo $item[`id`] ?>">Eliminar</a></td>
+            <td><a href="index.php?controlador=Llistat&accion=eliminar&param=<?php echo $item["id_llibre"] ?>">Eliminar</a></td>
 
         </tr> <?php
         } while($item = $listado->fetch());  ?>
     
     </table>   
+    <a href="index.php?controlador=Llistat&accion=afegir_llibre">Afegir</a>
+  
+  </body>
+
 </body>
 <script>
   document.querySelector('.back-arrow').addEventListener('click', function() {

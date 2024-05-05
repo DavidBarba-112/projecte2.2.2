@@ -11,15 +11,7 @@ class TreballadorsModel
 
 
     public function listado(){
-        $consulta = $this->db->prepare("SELECT usuarios.id_usuario, 
-        usuarios.nombre_usuario, 
-        usuarios.email, 
-        usuarios.documento, 
-        usuarios.password, 
-        rols.rol AS nombre_rol
- FROM usuarios
- JOIN rols ON usuarios.id_rol = rols.id_rol
- ");
+        $consulta = $this->db->prepare("SELECT * FROM VistaUsuarios ORDER BY id_usuario ");
  
 
             $consulta->setFetchMode(PDO::FETCH_ASSOC);

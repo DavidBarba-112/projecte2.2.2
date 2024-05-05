@@ -30,12 +30,13 @@ CREATE TABLE llistat_llibres (
     categoria VARCHAR(50)
 );
 
-CREATE TABLE llistat_llibres_venuts (
-    id_llibre_venut INT PRIMARY KEY AUTO_INCREMENT,
-    nom VARCHAR(50),
+
+
+CREATE TABLE llistat_llibres_venuts(
+    nombre VARCHAR(70),
+    precio INT,
     categoria VARCHAR(50),
-    preu INT,
-    data_venta DATE
+    fecha_venta DATE   
 );
 
 CREATE TABLE images (
@@ -48,6 +49,8 @@ CREATE TABLE images (
     FOREIGN KEY(id_categoria) REFERENCES categoria(id_categoria),
     categoria VARCHAR(50)
 );
+
+
 
 INSERT INTO rols VALUES
     (1, 'Administrador'),
@@ -128,6 +131,58 @@ INSERT INTO llistat_llibres VALUES
     (50, 'Anna Karenina', 676869, 29, 'Romance'),
     (51, 'El conde de Montecristo', 707172, 30, 'Aventura');
 
-INSERT INTO llistat_llibres_venuts VALUES
-    (1, '1984', 'Ciencia Ficción', 20, '2024-01-16'),
-    (2, 'Cien años de soledad', 'Realismo Mágico', 30, '2024-01-15');
+
+
+DELIMITER //
+CREATE TRIGGER llistat_llibres_BEFORE_UPDATE BEFORE UPDATE ON llistat_llibres FOR EACH ROW
+BEGIN
+    IF OLD.nom != NEW.nom THEN
+        INSERT INTO llistat_llibres_venuts (nom, categoria, preu, data_venta)
+        VALUES (OLD.nom, OLD.categoria, OLD.preu, CURDATE());
+    END IF;
+END;
+//
+DELIMITER ;
+
+
+DELIMITER //
+
+CREATE PROCEDURE InsertarLibro(
+    IN nombre_libro VARCHAR(50),
+    IN num_serie INT,
+    IN precio INT,
+    IN nombre_categoria VARCHAR(50)
+)
+BEGIN
+    DECLARE categoria_id INT;
+
+    -- Obtener el ID de la categoría
+    SELECT id_categoria INTO categoria_id FROM categoria WHERE categoria = nombre_categoria;
+
+    -- Insertar el libro en la tabla llistat_llibres
+    INSERT INTO llistat_llibres (nom, num_serie, preu, categoria)
+    VALUES (nombre_libro, num_serie, precio, nombre_categoria);
+
+    -- Si la categoría no existe, insertarla en la tabla categoria
+    IF categoria_id IS NULL THEN
+        INSERT INTO categoria (categoria) VALUES (nombre_categoria);
+    END IF;
+END;
+//
+
+DELIMITER ;
+
+CALL InsertarLibro('Procedure3', 123456, 15, 'Ficción');
+
+
+
+
+
+SELECT * FROM llistat_llibres WHERE nom = 'Nuevo Libro';
+
+
+
+CREATE VIEW VistaUsuarios AS
+SELECT id_usuario, nombre_usuario, email, documento, r.rol AS rol
+FROM usuarios u
+INNER JOIN rols r ON u.id_rol = r.id_rol;

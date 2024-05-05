@@ -66,6 +66,12 @@ public function gravar_modificacio($request){
 }
 
 
+
+
+
+
+
+
 public function formulario_agregar() {
     $this->view->show("formulario_agregar.php");
 }
@@ -84,6 +90,17 @@ public function guardar_nuevo() {
     // Redireccionar a alguna página después de guardar, si es necesario
     // header("Location: index.php");
 }
+
+
+
+
+
+
+
+
+
+
+
 
 public function eliminar($request)
 {

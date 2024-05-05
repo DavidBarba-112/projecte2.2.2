@@ -259,97 +259,36 @@ session_start(); // Inicia la sesión (si no está iniciada)
     </style>
     <body>
        
-
-    <?php
-    // Verificar si hay un usuario autenticado en la sesión
-    if (isset($_SESSION['user'])) {
-        // Mostrar el nombre del usuario
-        echo "<p>Bienvenido, " . $_SESSION['user']['nombre'] . "!</p>";
-    } else {
-        // Si no hay usuario autenticado, redirigir a la página de inicio de sesión
-        header("Location: login.php");
-        exit; // Finalizar la ejecución del script para evitar que se muestre el resto de la página
-    }
+    <?php 
+    session_start();
     ?>
+    <header>
+        <hgroup>
+            <h1>
+                <?php   
+                if (!isset($_SESSION['user']) || $_SESSION['user']['rol'] != 'Administrador') {
+                    echo "Benbingut " . $_SESSION['user']['email'];
+                }  
+                ?>
+            </h1>
+            <a  href="logout.php?logout=true">&larr; Tanca la sessio</a>
+        </hgroup>
+    </header>
     
         
         <nav>
             <ul>
                 <li><a class="brick dashboard" href="/projecte2.2.2/index.php?controlador=Llistat&accion=llistatt"> <img src="libro.png" width="3px" height="4px" span class='icon ion-home'></span>Llistat Llibres</a></li>
-                <li><a class="brick pages" href="/projecte2.2.2/index.php?controlador=Llistatvenut&accion=llistatvenut"> <img src="librov.png" span class='icon ion-document'></span>Libros vendidos</a></li>
-                <li><a class="brick navigation" href="#"><span class='icon ion-android-share-alt'></span>Navigation</a></li>
-                <li><a class="brick users" href="#"><span class='icon ion-person'></span>Users</a></li>
-                <li><a class="brick settings" href="#"><span class='icon ion-gear-a'></span>Website Settings</a></li>
+                <li><a class="brick pages" href="/projecte2.2.2/index.php?controlador=Llistatvenut&accion=llistatvenut"> <img src="librov.png" span class='icon ion-document'></span>Llibres venuts</a></li>
+               <!-- <li><a class="brick navigation" href="#"><span class='icon ion-android-share-alt'></span>Navigation</a></li>
+                <li><a class="brick users" href="#"><span class='icon ion-person'></span>Users</a></li> -->
+                <!--<li><a class="brick settings" href="/projecte2.2.2/views/dao.php"><span class='icon ion-gear-a'></span>DAO</a></li> -->
+
             </ul>
         </nav>
         
         <div id="content" class="pages">
-            <header>
-                <div class="brick identify">
-                    <img src="time-and-calendar2.png" span class="icon ion-document"></span>
-                </div>
-        
-                <a href="#"><div class="brick title">
-                    
-                    <h2>Calendario</h2>
 
-                </div></a> 
-
-        
-            </header>
-
-            <h1>Gallery</h1>
-        <table>
-            <?php
-            // DB details
-            $dbHost     = 'localhost';
-            $dbUsername = 'pma';
-            $dbPassword = 'P@ssw0rd';
-            $dbName     = 'bibliotecas';
-
-            // Create connection and select DB
-            $db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
-
-            // Check connection
-            if($db->connect_error){
-                die("Connection failed: " . $db->connect_error);
-            }
-
-            // Get image data from database
-            $result = $db->query("SELECT id, image, price, nom FROM images");
-
-            if($result->num_rows > 0){
-                echo '<tr>';
-                $count = 0;
-                while($row = $result->fetch_assoc()){
-                    if ($count > 0 && $count % 4 == 0) {
-                        echo '</tr><tr>';
-                    }
-                    echo '<td>';
-                    echo '<img src="data:image/jpeg;base64,'.base64_encode($row['image']).'" style="width: 200px; height: 150px;" />';
-                    echo '<br>';
-                    echo '<button class="button" onclick="addToCart('.$row['id'].', '.$row['price'].', \''.$row['nom'].'\')">Add to Cart</button>';
-                    echo '</td>';
-                    $count++;
-                }
-                echo '</tr>';
-            } else {
-                echo '<tr><td colspan="4">No images found...</td></tr>';
-            }
-
-            // Close DB connection
-            $db->close();
-            ?>
-        </table>
-        <div style="background-color: #ddd;">
-        <h2>Shopping Cart</h2>
-        <div id="cart" >
-            <!-- Aquí se mostrarán los productos agregados al carrito -->
-        </div>
-        <div id="total"></div>
-        <button class="button" onclick="payCash()">Pay in Cash</button>
-        <button class="button" onclick="payCard()">Pay with Card</button>
-        </div>
 
         <script>
             var cart = {}; // Objeto para almacenar los productos agregados al carrito

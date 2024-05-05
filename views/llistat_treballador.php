@@ -56,68 +56,134 @@
   font-size: 24px;
   cursor: pointer;
 }
+.bajar{
+  background-color: #ddd;
+  height: 3px;
+}
+footer{
+  background-color: #ffff;
+}
+#searchContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    margin-right: 10px;
+}
+
+#searchContainer button {
+    background-color: #0066cc;
+    border-radius: 3px;
+    color: #fff;
+    margin-right: 10px;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+}
+
+#searchContainer button:hover {
+    background-color: #004080;
+}
+
+#cartContainer {
+    max-height: 50vh; /* Limita la altura del contenedor */
+    overflow-y: auto; /* Agrega desplazamiento vertical si el contenido excede la altura máxima */
+    background-color: #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#cartContainer h2 {
+    margin-top: 0;
+}
+
+#cartContainer button {
+    margin-top: 10px;
+}
+
+#bookList{
+    overflow-y: scroll;
+    max-height: 50vh;
+    width: 90%;
+    margin:auto;
+    
+}
+#cartContainer{
+    margin-top: 40px;
+}
+
+
 </style>
 <body>
-    <h2 id="titol">Llistat NO admin</h2>
+    <h2 id="titol">Llistat de llibres</h2>
     <br>
-    <i class="back-arrow">Volver  </i>
+    <a href="index2.2.php" class="back-arrow">Torna  </a>
     <br>
 <br>
-<input type="text" id="searchInput" placeholder="Buscar libro por nombre...">
-<button onclick="searchBooks()">Buscar</button>
-<button onclick="resetSearch()">Quitar filtro</button>
+
+<div id="searchContainer">
+    <input type="text" id="searchInput" placeholder="Busca llibre pel nom">
+    <button onclick="searchBooks()">Buscar</button>
+    <button onclick="resetSearch()">Eliminar flitres</button>
+</div>
 
 
 
+<br>
 
 
+<div id="bookList">
 
-    <table  id="bookTable" border="1">
-        <thead><tr><?php
-        $item = $listado->fetch();
-        foreach($item as $key=>$value) { ?>
-            <th><?php echo $key ?></th><?php
-        } ?>
+
+<table id="bookTable" border="1">
+    <thead>
+        <tr>
+            <?php
+            $item = $listado->fetch();
+            foreach ($item as $key => $value) {
+                ?>
+                <th <?php if ($key === 'id_llibre') echo 'style="display: none;"' ?> > <?php echo $key ?></th>
+            <?php } ?>
             <th>Comprar</th>
         </tr>
-<?php 
-    do { ?>  
-        <tr><?php
-            foreach($item as $key=>$value) { ?>
-                <td><?php echo $value ?></td><?php
-            } ?>
-            
+    <?php do { ?>
+        <tr>
+            <?php foreach ($item as $key => $value) { ?>
+                <td <?php if ($key === 'id_llibre') echo 'style="display: none;"' ?>><?php echo $value ?></td>
+            <?php } ?>
             <td>
-            
-    <button class="button" onclick="console.log(<?php echo $item['id_llibre']; ?>, '<?php echo $item['nom']; ?>', <?php echo $item['preu']; ?>, '<?php echo $item['categoria']; ?>'); addToCart(<?php echo $item['id_llibre']; ?>, '<?php echo $item['nom']; ?>', <?php echo $item['preu']; ?>, '<?php echo $item['categoria']; ?>')">Add to Cart</button>
+                <button class="button" onclick="console.log(<?php echo $item['id_llibre']; ?>, '<?php echo $item['nom']; ?>', <?php echo $item['preu']; ?>, '<?php echo $item['categoria']; ?>'); addToCart(<?php echo $item['id_llibre']; ?>, '<?php echo $item['nom']; ?>', <?php echo $item['preu']; ?>, '<?php echo $item['categoria']; ?>')">Afegir</button>
+            </td>
+        </tr>
+    <?php } while ($item = $listado->fetch()); ?>
+</table>  
 
+    </div>
 
-</td>
-        
-
-        </tr> <?php
-        } while($item = $listado->fetch());  ?>
-
-
-    
-    </table>   
-
-    <div style="background-color: #ddd;">
-    <h2>Shopping Cart</h2>
-    <div id="cart" >
-        <!-- Aquí se mostrarán los productos agregados al carrito -->
+    <div id="cartContainer">
+    <h2>Carrito</h2>
+    <div id="cart">
+        <!-- Contenido del carrito -->
     </div>
     <div id="total"></div>
-    <button class="button" onclick="payCash()">Pay in Cash</button>
-    <button class="button" onclick="payCard()">Pay with Card</button>
-	</div>
+    <button class="button" onclick="payCash()">Pagar</button>
+</div>
+
 
  <!--   <button id="carrito-btn">Carrito</button> -->
  <!--   <div id="carrito-container">a</div> -->
 
 
 </body>
+
 <script>
+
+
+
 
 var cart = {}; // Objeto para almacenar los productos agregados al carrito
 
@@ -141,9 +207,37 @@ function addToCart(id, nombre, precio, categoria) {
         updateCartView();
         // Actualiza el total
         updateTotal();
+        
+        // Obtiene la fecha y hora actual
+        var fechaVenta = new Date().toISOString().slice(0, 19).replace('T', ' ');
+        
+        // Envía una solicitud AJAX para guardar el producto en la base de datos
+        saveProductToDatabase(id, nombre, precio, categoria, fechaVenta);
     } else {
         console.error('Valores recibidos no válidos:', id, nombre, precio, categoria);
     }
+}
+
+function saveProductToDatabase(id, nombre, precio, categoria, fechaVenta) {
+    // Crea un objeto con los detalles del producto
+    var producto = {
+        id: id,
+        nombre: nombre,
+        precio: precio,
+        categoria: categoria,
+        fechaVenta: fechaVenta // Agrega la fecha de venta al objeto producto
+    };
+    
+    // Envía una solicitud AJAX al servidor para guardar el producto en la base de datos
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "views/guardar_producto.php", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log("Producto guardado en la base de datos:", producto);
+        }
+    };
+    xhr.send(JSON.stringify(producto));
 }
 
 
@@ -182,16 +276,12 @@ function updateTotal() {
 
 
 function payCash() {
-// Obtener el total del carrito
-//var totalAmount = parseFloat();
-var dinero = document.getElementById("total");
-dinero = dinero.textContent;
-dinero = dinero.replace('Total: $','');
-
-
-// Redirigir a metalico.php con totalAmount total del carrito como parámetro
-var url =  'metalico.php?total=' + dinero;
-window.location.href = url;
+    // Obtener el total del carrito
+    var totalAmount = document.getElementById("total").textContent.trim().replace('Total: $', '');
+    
+    // Redirigir a metalico.php con totalAmount total del carrito como parámetro
+    var url = 'metalico.php?total=' + totalAmount;
+    window.location.href = url;
 }
 
 
@@ -232,6 +322,23 @@ function resetSearch() {
     }
 }
 
+function filterByCategory() {
+    var selectedCategory = document.getElementById("categoryFilter").value;
+    var table = document.getElementById("bookTable");
+    var rows = table.getElementsByTagName("tr");
+    
+    for (var i = 1; i < rows.length; i++) { // Empezamos desde 1 para omitir la fila de encabezado
+        var categoryCell = rows[i].getElementsByTagName("td")[3]; // Suponiendo que el índice de la columna de categoría es 3
+        if (categoryCell) {
+            var category = categoryCell.textContent || categoryCell.innerText;
+            if (selectedCategory === "" || category === selectedCategory) {
+                rows[i].style.display = "";
+            } else {
+                rows[i].style.display = "none";
+            }
+        }
+    }
+}
 
 
 </script>

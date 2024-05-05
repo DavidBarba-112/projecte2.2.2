@@ -59,10 +59,10 @@ button:hover {
 <body>
 <div id="panel">
     <h2>Panel de Pago</h2>
-    <p>Recibido: <input type="number" id="receivedInput" min="0" step="0.01"></p>
+    <p>Rebut: <input type="number" id="receivedInput" min="0" step="0.01"></p>
     <p>Total: <span id="total">$0.00</span></p>
-    <p>Cambio: <span id="change">$0.00</span></p>
-    <button id="dar">Dar Cambio</button>
+    <p>Canvi: <span id="change">$0.00</span></p>
+    <button id="dar">Donar canvi</button>
 </div>
 
 
